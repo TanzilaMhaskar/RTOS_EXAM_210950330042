@@ -32,14 +32,16 @@ while(1)
 {
     printf("Task3 \n");
     vTaskDelay(5000/portTICK_PERIOD_MS);
-    motor_timer_handle= xTimerCreate("MotorOFF",pdMS_TO_TICKS(10000),pdFALSE,NULL,TurnMotorOFF); //create timer
-    xTimerStart(motor_timer_handle,0);
+    
 }
+  motor_timer_handle= xTimerCreate("MotorOFF",pdMS_TO_TICKS(10000),pdFALSE,NULL,TurnMotorOFF); //create timer
+    xTimerStart(motor_timer_handle,0);
 }
 
 void TurnMotorOFF(TimerHandle_t xTimer) //callback
 {
 printf("Turning motor off\n");
+xTimerStop(motor_timer_handle,0);
 }
 
 void  app_main()
